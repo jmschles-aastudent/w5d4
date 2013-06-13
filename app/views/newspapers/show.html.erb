@@ -1,0 +1,12 @@
+<h2><%= @newspaper.title %>
+
+<h4>Editor: the <%= random_grandiose_word %> <%= @newspaper.editor %></h4>
+
+<ul>
+	<% @newspaper.subscription_plans.each do |plan| %>
+		<% freq = (plan.plan_type == 'w') ? 'Weekly' : 'Daily' %>
+		<li><%= freq %> - <%= number_to_currency(plan.price) %>/month</li>
+	<% end %>
+</ul>
+
+<%= button_to "New Subscription Plan", new_newspaper_subscription_plan_url(@newspaper), :method => :get %>

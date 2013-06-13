@@ -1,0 +1,41 @@
+<h2>Make a New Newspaper</h2>
+
+<form action="<%= newspapers_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<label for="newspaper_title">Title</label>
+	<input type="text" id="newspaper_title" name="newspaper[title]" value="<%= @newspaper.title %>">
+
+	<br />
+
+	<label for="newspaper_editor">Editor</label>
+	<input type="text" id="newspaper_editor" name="newspaper[editor]" value="<%= @newspaper.editor %>">
+
+	<br />
+
+	<h4>Add Subscriptions</h4>
+
+	<% @newspaper.subscription_plans.each_with_index do |plan, i| %>
+
+		<% id_string = "newspaper_subscription_plans_attributes_#{i}_" %>
+		<% name_string = "newspaper[subscription_plans_attributes][#{i}]" %>
+
+		<input type="radio" id="<%= id_string %>type_daily" name="<%= name_string %>[plan_type]" value="d" <%= "checked" if plan.plan_type == "d" %>
+		<label for="<%= id_string %>type_daily">Daily</label>
+
+		<br />
+
+		<input type="radio" id="<%= id_string %>type_weekly" name="<%= name_string %>[plan_type]" value="w" <%= "checked" if plan.plan_type == "w" %>
+		<label for="<%= id_string %>type_weekly">Weekly</label>
+
+		<br />
+
+		<label for="<%= id_string %>price">Price</label>
+		<input type="text" id="subscription_plan_price" name="<%= name_string %>[price]"	 value="<%= plan.price %>"> per month
+
+		<br />
+
+	<% end %>
+
+	<input type="submit" value="Make New Paper">
+</form>

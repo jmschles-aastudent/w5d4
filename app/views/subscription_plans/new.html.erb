@@ -1,0 +1,19 @@
+<h2>New Plan for <%= @newspaper.title %></h2>
+
+<form action="<%= newspaper_subscription_plans_url %>" method="post">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+	<input type="radio" id="subscription_plan_type_daily" name="subscription_plan[plan_type]" value="d" <%= "checked" if @sub_plan.plan_type == "d" %>
+	<label for="subscription_plan_type_daily">Daily</label>
+	<br />
+	<input type="radio" id="subscription_plan_type_weekly" name="subscription_plan[plan_type]" value="w" <%= "checked" if @sub_plan.plan_type == "w" %>
+	<label for="subscription_plan_type_daily">Weekly</label>
+	<br />
+
+	<label for="subscription_plan_price">Price</label>
+	<input type="text" id="subscription_plan_price" name="subscription_plan[price]" value="<%= @sub_plan.price %>"> per month
+
+	<br />
+
+	<input type="submit" value="Create Plan">
+</form>
