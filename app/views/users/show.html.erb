@@ -1,1 +1,12 @@
 <h2>Welcome, <%= @user.name %>!</h2>
+
+<h4>Your Subscriptions: </h4>
+
+<ul>
+	<% @user.plans_subscribed_to.each do |plan| %>
+		<% freq = (plan.plan_type == 'w') ? 'Weekly' : 'Daily' %>
+		<li><strong><%= plan.newspaper.title %></strong> : <%= freq %> - <%= plan.price %> per month</li>
+	<% end %>
+</ul>
+
+<%= button_to "Add Subscription", :method => :get %>

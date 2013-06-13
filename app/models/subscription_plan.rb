@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: subscription_plans
+#
+#  id           :integer          not null, primary key
+#  plan_type    :string(255)
+#  price        :decimal(, )
+#  newspaper_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
 class SubscriptionPlan < ActiveRecord::Base
   attr_accessible :plan_type, :price, :newspaper_id
 

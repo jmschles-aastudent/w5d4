@@ -13,5 +13,17 @@
 
 	<br />
 
+	<h4>Pick some subscriptions! SPEND THAT BREAD!!</h4>
+	<% Newspaper.all.each do |paper| %>
+		<p><%= paper.title %></p>
+		<select name="user[plans_subscribed_to_ids][]">
+			<option value=""></option>
+			<% paper.subscription_plans.each do |sub_plan| %>
+				<% freq = (sub_plan.plan_type) == 'w' ? "Weekly" : "Daily" %>
+				<option value="<%= sub_plan.id %>"><%= freq %> - <%= number_to_currency(sub_plan.price) %>/month</option>
+			<% end %>
+		</select>
+	<% end %>
+	<br />
 	<input type="submit" value="Sign Up">
 </form>

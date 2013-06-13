@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 	def create
 		@user = User.new(params[:user])
+		@user.subscriptions.build(params[:subscription])
 		if @user.save!
 			login(@user)
 			redirect_to user_url(@user)
