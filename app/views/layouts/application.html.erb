@@ -8,6 +8,18 @@
 </head>
 <body>
 
+<% if current_user %>
+	<%= button_to "Log out", session_url, :method => :delete %>
+	<br />
+	Username: <%= current_user.name %>
+	<br />
+	Session token: <%= session[:session_token] %>
+<% else %>
+	<%= button_to "Log in", new_session_url, :method => :get %>
+<% end %>
+
+<hr>
+
 <%= yield %>
 
 </body>
