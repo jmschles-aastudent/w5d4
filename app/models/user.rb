@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
 
   attr_reader :password
 
+  has_many :subscriptions
+  has_many :plans_subscribed_to, :through => :subscriptions, :source => :subscription_plan
+
   def password=(password)
   	self.password_digest = BCrypt::Password.create(password)
   end

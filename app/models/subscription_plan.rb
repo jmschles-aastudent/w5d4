@@ -10,4 +10,6 @@ class SubscriptionPlan < ActiveRecord::Base
  	validates :newspaper, :presence => true
 
  	belongs_to :newspaper
+ 	has_many :subscriptions
+ 	has_many :subscribers, :through => :subscriptions, :source => :user
 end
